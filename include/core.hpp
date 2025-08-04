@@ -3,5 +3,8 @@
 #include <iostream>
 #include <string>
 #include <time.h>
+#include <functional>
+#include <memory>
+#include <sys/epoll.h>
 using namespace std;
 #endif
