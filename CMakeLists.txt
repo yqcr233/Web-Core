@@ -5,5 +5,7 @@ set(SRC_LIST main.cpp)
 
 add_executable(web_core ${SRC_LIST})
 
-target_include_directories(web_core PRIVATE ${CMAKE_SOURCE_DIR}/include)
+add_subdirectory(ZTimeStamp)
 
+target_include_directories(web_core PRIVATE ${CMAKE_SOURCE_DIR}/include)
+target_link_libraries(web_core PRIVATE timestamp)
