@@ -26,5 +26,7 @@ void Logger::log(string msg){
             break;
     }
     // 打印日志信息
-    cout << pre + TimeStamp::now().ToString() << " : " << msg << endl;
+    pre += TimeStamp::now().ToString() + " : " + msg;
+    // cout << pre + TimeStamp::now().ToString() << " : " << msg << endl;
+    fprintf(stdout, "%s\n", pre);
 }

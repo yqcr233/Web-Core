@@ -6,5 +6,10 @@
 #include <functional>
 #include <memory>
 #include <sys/epoll.h>
+#include <vector>
+#include <mutex>
+#include <atomic>
+#include <unordered_map>
+#include <string.h>
 using namespace std;
 #endif

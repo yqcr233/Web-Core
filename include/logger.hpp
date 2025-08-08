@@ -3,11 +3,14 @@
 #include "core.hpp"
 #include "noncopyable.hpp"
 #include "timestamp.hpp"
+// 使用do - while(0) 形式是为了避免直接使用{}后在代码中按函数形式调用宏时多余的;
+// 如：LOG_INFO("hello"); -->  do{ ... }while(0); 
+// 如果直接使用{}形式      -->  { ... };  多余了;号
 #define LOG_INFO(logmsgFormat, ...) \
     do{ \
         Logger& logger = Logger::Instance(); \
         logger.setLogLevel(INFO); \
-        char buf[1024] = {0}    \
+        char buf[1024] = {0};    \
         snprintf(buf, 1024, logmsgFormat, ##__VA_ARGS__);    \
         logger.log(buf);    \
     }while(0)
@@ -16,7 +19,7 @@
     do{ \
         Logger& logger = Logger::Instance(); \
         logger.setLogLevel(ERROR); \
-        char buf[1024] = {0}    \
+        char buf[1024] = {0};    \
         snprintf(buf, 1024, logmsgFormat, ##__VA_ARGS__);    \
         logger.log(buf);    \
     }while(0)
@@ -25,7 +28,7 @@
     do{ \
         Logger& logger = Logger::Instance(); \
         logger.setLogLevel(FATAL); \
-        char buf[1024] = {0}    \
+        char buf[1024] = {0};   \
         snprintf(buf, 1024, logmsgFormat, ##__VA_ARGS__);    \
         logger.log(buf);    \
     }while(0)
@@ -35,7 +38,7 @@
     do{ \
         Logger& logger = Logger::Instance(); \
         logger.setLogLevel(DEBUG); \
-        char buf[1024] = {0}    \
+        char buf[1024] = {0};    \
         snprintf(buf, 1024, logmsgFormat, ##__VA_ARGS__);    \
         logger.log(buf);    \
     }while(0)

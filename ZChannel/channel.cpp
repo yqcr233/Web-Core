@@ -99,6 +99,7 @@ void Channel::update(){//添加channel到eventLoop的待更新列表
     loop_->updateChannel(this);
 }
 void Channel::handleEventWithGuard(TimeStamp recvTime){// 事件就绪时安全调用事件回调
+    LOG_INFO("channel handleEvent revents:%d\n", revents_);
     // 错误
     if(revents_ & EPOLLERR) {
         if(ErrorCallBack) {
