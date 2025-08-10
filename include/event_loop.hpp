@@ -18,7 +18,7 @@ class EventLoop: noncopyable{
         TimeStamp pollReturnTime() const;
         void runInLoop(function<void()> cb);
         void queueInLLoop(function<void()> cb);
-        void weakup();
+        void wakeup();
 
         void updateChannel(Channel *channel);
         void removeChannel(Channel *channel);

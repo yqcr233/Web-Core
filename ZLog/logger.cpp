@@ -28,5 +28,5 @@ void Logger::log(string msg){
     // 打印日志信息
     pre += TimeStamp::now().ToString() + " : " + msg;
     // cout << pre + TimeStamp::now().ToString() << " : " << msg << endl;
-    fprintf(stdout, "%s\n", pre);
+    fprintf(stdout, "%s\n", pre.data());
 }
