@@ -1,6 +1,6 @@
 #include "inet_address.hpp"
 
-InetAddress::InetAddress(uint16_t port = 0, string ip = "127.0.0.1"){
+InetAddress::InetAddress(uint16_t port, string ip){
     memset(&addr_, 0, sizeof(addr_));
     addr_.sin_family = AF_INET;
     addr_.sin_port = htons(port);

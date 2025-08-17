@@ -13,6 +13,21 @@ add_subdirectory(ZEpollPoller)
 add_subdirectory(ZEventLoop)
 add_subdirectory(ZLog)
 add_subdirectory(ZCurrentThread)
+add_subdirectory(ZSocket)
+add_subdirectory(ZAcceptor)
+add_subdirectory(ZInetAddress)
 
 target_include_directories(web_core PRIVATE ${CMAKE_SOURCE_DIR}/include)
-target_link_libraries(web_core PRIVATE timestamp test channel epollpoller event_loop poller logger current_thread)
+target_link_libraries(web_core PRIVATE 
+    timestamp 
+    test 
+    channel 
+    epollpoller 
+    event_loop 
+    poller 
+    logger 
+    current_thread
+    inet_address
+    socket
+    acceptor
+)
