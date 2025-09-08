@@ -16,6 +16,7 @@ add_subdirectory(ZCurrentThread)
 add_subdirectory(ZSocket)
 add_subdirectory(ZAcceptor)
 add_subdirectory(ZInetAddress)
+add_subdirectory(ZBuffer)
 
 target_include_directories(web_core PRIVATE ${CMAKE_SOURCE_DIR}/include)
 target_link_libraries(web_core PRIVATE 
@@ -30,4 +31,5 @@ target_link_libraries(web_core PRIVATE
     inet_address
     socket
     acceptor
+    buffer
 )

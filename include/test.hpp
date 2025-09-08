@@ -10,4 +10,6 @@ void test_channel();
 void test_poller();
 
 void test_eventloop();
+
+void test_buffer();
 #endif

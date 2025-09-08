@@ -11,5 +11,8 @@
 #include <atomic>
 #include <unordered_map>
 #include <string.h>
+#include <algorithm>
+#include <stddef.h>
+#include <algorithm>
 using namespace std;
 #endif
