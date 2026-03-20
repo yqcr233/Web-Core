@@ -3,7 +3,7 @@
 #include "logger.hpp"
 
 const int Channel::KNoneEvent = 0; // 空事件
-const int Channel::KReadEvent = EPOLLIN | EPOLLPRI; // 空事件
+const int Channel::KReadEvent = EPOLLIN | EPOLLPRI; // 空事件，没有设置触发标志位默认是水平触发EPOLLLT
 const int Channel::KWriteEvent = EPOLLOUT; // 空事件
 
 Channel::Channel(EventLoop* loop, int fd): 

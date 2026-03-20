@@ -3,7 +3,8 @@ project(WebCore)
 
 set(SRC_LIST main.cpp)
 
-add_executable(web_core ${SRC_LIST})
+
+link_directories(${PROJECT_SOURCE_DIR}/include)
 
 add_subdirectory(ZTimeStamp)
 add_subdirectory(ZTest)
@@ -17,6 +18,12 @@ add_subdirectory(ZSocket)
 add_subdirectory(ZAcceptor)
 add_subdirectory(ZInetAddress)
 add_subdirectory(ZBuffer)
+add_subdirectory(ZThread)
+add_subdirectory(ZTcpConnection)
+add_subdirectory(ZTcpServer)
+
+add_executable(web_core ${SRC_LIST})
+
 
 target_include_directories(web_core PRIVATE ${CMAKE_SOURCE_DIR}/include)
 target_link_libraries(web_core PRIVATE 
@@ -32,4 +39,7 @@ target_link_libraries(web_core PRIVATE
     socket
     acceptor
     buffer
+    thread_
+    tcpconnection
+    tcp_server
 )

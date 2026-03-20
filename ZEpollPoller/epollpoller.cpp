@@ -54,6 +54,7 @@ void EpollPoller::updateChannel(Channel *channel) {
     } else{ // 已注册则判断需移除或修改事件
         int fd = channel->fd();
         if(channel->isNoneEvent()) {
+            // 只是从epoll中移除，而不是从映射表中删除，可以在后续进行复用
             update(EPOLL_CTL_DEL, channel);
             channel->set_index(KDeleted);
         } else{
@@ -61,6 +62,7 @@ void EpollPoller::updateChannel(Channel *channel) {
         }
     }
 }
+// 完全重新配置Channel，用于其他目的(同时移除出poller映射表，则将channel状态设置为kNew)
 void EpollPoller::removeChannel(Channel *channel) {
     int fd = channel->fd();
     auto it = channels_.find(fd);
@@ -79,7 +81,7 @@ void EpollPoller::fillActiveChannels(int numEvents, vector<Channel*> *activeChan
     for(int i = 0; i < numEvents; i++) {
         Channel *channel = static_cast<Channel*>(events_[i].data.ptr);
         channel->set_revents(events_[i].events);
-        activeChannels->push_back(channel);
+        activeChannels->push_back(channel);           // 在这里eventloop得到所有发生事件的channel列表
     }
 }
 void EpollPoller::update(int operation, Channel* channel){

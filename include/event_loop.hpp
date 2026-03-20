@@ -15,11 +15,13 @@ class EventLoop: noncopyable{
         void loop(); // 开启循环
         void quit(); // 退出循环
         
+        // 监听和处理事件
         TimeStamp pollReturnTime() const;
         void runInLoop(function<void()> cb);
         void queueInLLoop(function<void()> cb);
         void wakeup();
 
+        // 更新poller中fd所监听的事件类型
         void updateChannel(Channel *channel);
         void removeChannel(Channel *channel);
         void hasChannel(Channel *channel);
@@ -29,7 +31,8 @@ class EventLoop: noncopyable{
         const pid_t threadId_; // 标记当前eventloop所属thread
         TimeStamp pollReturnTime_; // Poller返回发生事件channel的时间点
         unique_ptr<Poller> poller_;
-        
+
+        // wakeupfd_可以创建为eventfd可以进行线程间通信，而sockfd只会在对端发送数据时才会变成可读状态
         int wakeupFd_; // mainloop用来唤醒一个subloop处理新到的channel
         unique_ptr<Channel> wakeupChannel_;
 

@@ -90,13 +90,11 @@ void EventLoop::queueInLLoop(function<void()> cb){
         unique_lock<std::mutex> lock(mutex);
         pendingFunctors_.emplace_back(cb);
     }
-
     // !isInLoopThread => 在其他线程中调用，当前线程需先被唤醒确保不会出现poll阻塞的状态
     //  callingPendingFunctors_ => 当前线程并为阻塞，但当前循环poll调用已过，正在执行funcotr，所以提前唤醒防止下个循环中poll阻塞导致延迟
     if(!isInLoopThread() || callingPendingFunctors_) {
         wakeup();
     }
-
 }
 
 // 唤醒loop所在线程，向wakefd写入一个数据，wakeupChannel就发生读事件 当前loop线程就会被唤醒

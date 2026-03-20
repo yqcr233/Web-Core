@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.15)
 project(EventLoop)
 
-set(SRC_LIST event_loop.cpp)
+set(SRC_LIST event_loop.cpp event_loop_thread.cpp event_loop_thread_pool.cpp)
 
 add_library(event_loop ${SRC_LIST})
 

@@ -55,7 +55,7 @@ const char *Buffer::beginWrite() const {
 }
 /**
  * inputBuffer_.readFd表示将对端数据读到inputBuffer_中，移动writerIndex_指针
- * outputBuffer_.writeFd标示将数据写入到outputBuffer_中，从readerIndex_开始，可以写readableBytes()个字节
+ * outputBuffer_.writeFd标示将数据写出到文件描述符中，从readerIndex_开始，可以写readableBytes()个字节
  */
 ssize_t Buffer::readFd(int fd, int *saveErrno){
     // 栈额外空间，用于从套接字往出读时，当buffer_暂时不够用时暂存数据，待buffer_重新分配足够空间后，在把数据交换给buffer_。
